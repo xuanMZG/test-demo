@@ -1,18 +1,17 @@
-import useReactive from '@/common/hook'
-function Vue() {
-    const state = useReactive({ number:1  , name:'alien' })
-   return <div className="box" >
-       <div className="show" >
-           <div> 你的姓名是: { state.name } </div>
-           <div>{ new Array(state.number).fill(0).map(()=> '👽') }</div>
-       </div>
-       <div className="constrol" >
-            <div> <button onClick={ ()=> state.number++ } >👽++</button> </div>
-            <div> <button onClick={ ()=> state.number-- } >👽--</button>  </div>
-            <input placeholder="姓名" value={state.name}  onChange={ (e:any) =>  state.name = e.target.value   }  />       
-       </div>
-   </div>
+import { useState } from 'react'
 
+function Reload() {
+    const [ num, setNumber ] = useState(0)
+    console.log(11111, num)
+    const handerClick = () => {
+        for (let i = 0;i < 5;i++) {
+           setTimeout(() => {
+                setNumber(num + 1)
+                console.log(num)
+           }, 1000 * i)
+        }
+    }
+    return <button onClick={ handerClick } >{ num }</button>
 }
 
-export default Vue;
+export default Reload;
